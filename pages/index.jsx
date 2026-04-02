@@ -404,7 +404,9 @@ export default function HomePage() {
                 <OutlineButton color="lime">
                   <span style={{ display: "inline-flex", alignItems: "center" }}>
                     <Instagram size={16} style={{ marginRight: 8 }} />
-                    @dx_tattoo_hunting
+                   <a href="https://instagram.com/dx_tattoo_hunting" target="_blank" rel="noreferrer">
+  @dx_tattoo_hunting
+</a>
                   </span>
                 </OutlineButton>
               </div>
