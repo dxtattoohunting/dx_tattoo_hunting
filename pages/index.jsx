@@ -397,7 +397,9 @@ export default function HomePage() {
               </div>
 
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 18 }}>
-                <PrimaryButton>Book on WhatsApp</PrimaryButton>
+                <a href="https://wa.me/918200558801" target="_blank" rel="noreferrer">
+  <PrimaryButton>Book on WhatsApp</PrimaryButton>
+</a>
                 <OutlineButton>See Tattoo Work</OutlineButton>
                 <OutlineButton color="lime">
                   <span style={{ display: "inline-flex", alignItems: "center" }}>
