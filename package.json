@@ -1,0 +1,16 @@
+{
+  "name": "dx-tattoo-hunting",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "next": "14.2.35",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "framer-motion": "^10.18.0",
+    "lucide-react": "^0.446.0"
+  }
+}
