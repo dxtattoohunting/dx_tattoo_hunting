@@ -836,52 +836,26 @@ export default function HomePage() {
               }}
             >
               {gallery.map((item) => (
-  <SectionCard key={item.title} style={{ overflow: "hidden", borderColor: "rgba(125,211,252,0.15)" }}>
-    <div
-      style={{
-        height: 176,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderBottom: `1px solid ${colors.border}`,
-        background: "#27272a",
-        overflow: "hidden",
-      }}
-    >
+  <div key={item.title} style={{ background: "#111", borderRadius: 20, overflow: "hidden" }}>
+    
+    <div style={{ height: 180, overflow: "hidden" }}>
       <img
         src={item.image}
         style={{
           width: "100%",
           height: "100%",
-          objectFit: "cover",
-          transition: "0.4s",
+          objectFit: "cover"
         }}
-        onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-        onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
       />
     </div>
 
-    <div style={{ padding: 20 }}>
-      <div style={{ display: "flex", gap: 12, justifyContent: "space-between", alignItems: "center" }}>
-        <h3 style={{ margin: 0, fontWeight: 700 }}>{item.title}</h3>
-        <span
-          style={{
-            borderRadius: 999,
-            background: "rgba(255,255,255,0.10)",
-            color: "#fff",
-            padding: "6px 10px",
-            fontSize: 12,
-          }}
-        >
-          {item.type}
-        </span>
-      </div>
-
-      <p style={{ marginTop: 10, color: colors.softText, lineHeight: 1.7, fontSize: 14 }}>
-        {item.note}
-      </p>
+    <div style={{ padding: 15 }}>
+      <h3 style={{ margin: 0 }}>{item.title}</h3>
+      <p style={{ fontSize: 12, opacity: 0.7 }}>{item.type}</p>
+      <p style={{ fontSize: 13 }}>{item.note}</p>
     </div>
-  </SectionCard>
+
+  </div>
 ))}
 
           {activeTab === "booking" && (
