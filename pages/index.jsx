@@ -58,8 +58,7 @@ const tattooStyles = [
   },
 ];
 
-const gallery = [
-  const gallery = Array.from({ length: 19 }, (_, i) => ({
+const gallery = Array.from({ length: 19 }, (_, i) => ({
   title: `Tattoo Design ${i + 1}`,
   type: "Custom Tattoo",
   note: "Premium tattoo artwork by Dx Tattoo Hunting.",
