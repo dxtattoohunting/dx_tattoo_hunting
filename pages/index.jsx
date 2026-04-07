@@ -59,51 +59,12 @@ const tattooStyles = [
 ];
 
 const gallery = [
-  {
-    title: "Snake Collarbone Tattoo",
-    type: "Minimal Realism",
-    note: "Elegant shading and natural collarbone flow.",
-  },
-  {
-    title: "Butterfly Chest Tattoo",
-    type: "Statement Piece",
-    note: "Strong symmetry and bold chest placement.",
-  },
-  {
-    title: "Krishna Script Tattoo",
-    type: "Religious / Script",
-    note: "Spiritual line art with clean script work.",
-  },
-  {
-    title: "Wolf Forearm Tattoo",
-    type: "Hyper Realistic",
-    note: "Detailed realism with layered composition.",
-  },
-  {
-    title: "Shivaji Maharaj Portrait",
-    type: "Portrait",
-    note: "Classic black and grey portrait detailing.",
-  },
-  {
-    title: "Snake Hand Tattoo",
-    type: "3D / Realism",
-    note: "High-impact hand tattoo with bold wrapping.",
-  },
-  {
-    title: "Compass Clock Forearm",
-    type: "Realistic Composition",
-    note: "Timepiece realism with directional elements.",
-  },
-  {
-    title: "Tiger Forearm Tattoo",
-    type: "Wildlife Realism",
-    note: "Sharp expression and high-contrast finish.",
-  },
-  {
-    title: "Buddha Floral Tattoo",
-    type: "Spiritual Black & Grey",
-    note: "Soft depth with peaceful floral composition.",
-  },
+  const gallery = Array.from({ length: 19 }, (_, i) => ({
+  title: `Tattoo Design ${i + 1}`,
+  type: "Custom Tattoo",
+  note: "Premium tattoo artwork by Dx Tattoo Hunting.",
+  image: `/images/tattoo${i + 1}.png`,
+}));
 ];
 
 const slots = ["11:00 AM", "12:30 PM", "2:00 PM", "4:00 PM", "6:00 PM", "7:30 PM"];
