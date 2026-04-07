@@ -843,7 +843,7 @@ export default function HomePage() {
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, color: "#e4e4e7" }}>
                       <ImageIcon size={40} color={colors.sky} />
                       <div style={{ fontSize: 14 }}><img 
-  src={`/images/tattoo${index + 1}.png`} 
+  src={item.image}
   style={{ width: "100%", height: "100%", objectFit: "cover" }} 
 /></div>
                     </div>
