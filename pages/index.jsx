@@ -64,7 +64,7 @@ const gallery = Array.from({ length: 19 }, (_, i) => ({
   note: "Premium tattoo artwork by Dx Tattoo Hunting.",
   image: `/images/tattoo${i + 1}.png`,
 }));
-];
+
 
 const slots = ["11:00 AM", "12:30 PM", "2:00 PM", "4:00 PM", "6:00 PM", "7:30 PM"];
 
