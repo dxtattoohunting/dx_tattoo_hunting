@@ -836,53 +836,53 @@ export default function HomePage() {
               }}
             >
               {gallery.map((item) => (
-                <SectionCard key={item.title} style={{ overflow: "hidden", borderColor: "rgba(125,211,252,0.15)" }}>
-                  <div
-                    style={{
-                      height: 176,
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      borderBottom: `1px solid ${colors.border}`,
-                      background: "#27272a",
-                    }}
-                  >
-                    <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, color: "#e4e4e7" }}>
-                      <ImageIcon size={40} color={colors.sky} />
-                      <div style={{ fontSize: 14 }}><img
-  src={item.image}
-  style={{
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    transition: "0.4s",
-  }}
-  onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
-  onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
-/>
-                    </div>
-                  </div>
-                  <div style={{ padding: 20 }}>
-                    <div style={{ display: "flex", gap: 12, justifyContent: "space-between", alignItems: "center" }}>
-                      <h3 style={{ margin: 0, fontWeight: 700 }}>{item.title}</h3>
-                      <span
-                        style={{
-                          borderRadius: 999,
-                          background: "rgba(255,255,255,0.10)",
-                          color: "#fff",
-                          padding: "6px 10px",
-                          fontSize: 12,
-                        }}
-                      >
-                        {item.type}
-                      </span>
-                    </div>
-                    <p style={{ marginTop: 10, color: colors.softText, lineHeight: 1.7, fontSize: 14 }}>{item.note}</p>
-                  </div>
-                </SectionCard>
-              ))}
-            </div>
-          )}
+  <SectionCard key={item.title} style={{ overflow: "hidden", borderColor: "rgba(125,211,252,0.15)" }}>
+    <div
+      style={{
+        height: 176,
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        borderBottom: `1px solid ${colors.border}`,
+        background: "#27272a",
+        overflow: "hidden",
+      }}
+    >
+      <img
+        src={item.image}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          transition: "0.4s",
+        }}
+        onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+        onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+      />
+    </div>
+
+    <div style={{ padding: 20 }}>
+      <div style={{ display: "flex", gap: 12, justifyContent: "space-between", alignItems: "center" }}>
+        <h3 style={{ margin: 0, fontWeight: 700 }}>{item.title}</h3>
+        <span
+          style={{
+            borderRadius: 999,
+            background: "rgba(255,255,255,0.10)",
+            color: "#fff",
+            padding: "6px 10px",
+            fontSize: 12,
+          }}
+        >
+          {item.type}
+        </span>
+      </div>
+
+      <p style={{ marginTop: 10, color: colors.softText, lineHeight: 1.7, fontSize: 14 }}>
+        {item.note}
+      </p>
+    </div>
+  </SectionCard>
+))}
 
           {activeTab === "booking" && (
             <div
