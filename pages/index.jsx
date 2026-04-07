@@ -358,14 +358,21 @@ export default function HomePage() {
 
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 18 }}>
                 <a href="https://wa.me/918200558801" target="_blank" rel="noreferrer">
+  <a 
+  href="https://wa.me/918200558801?text=Hello%20I%20want%20to%20book%20a%20tattoo" 
+  target="_blank"
+>
   <PrimaryButton>Book on WhatsApp</PrimaryButton>
+</a>
 </a>
                 <OutlineButton>See Tattoo Work</OutlineButton>
                 <OutlineButton color="lime">
                   <span style={{ display: "inline-flex", alignItems: "center" }}>
                     <Instagram size={16} style={{ marginRight: 8 }} />
                    <a href="https://instagram.com/dx_tattoo_hunting" target="_blank" rel="noreferrer">
+ <a href="https://instagram.com/dx_tattoo_hunting" target="_blank">
   @dx_tattoo_hunting
+</a>
 </a>
                   </span>
                 </OutlineButton>
@@ -842,10 +849,17 @@ export default function HomePage() {
                   >
                     <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 8, color: "#e4e4e7" }}>
                       <ImageIcon size={40} color={colors.sky} />
-                      <div style={{ fontSize: 14 }}><img 
+                      <div style={{ fontSize: 14 }}><img
   src={item.image}
-  style={{ width: "100%", height: "100%", objectFit: "cover" }} 
-/></div>
+  style={{
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    transition: "0.4s",
+  }}
+  onMouseOver={(e) => (e.currentTarget.style.transform = "scale(1.05)")}
+  onMouseOut={(e) => (e.currentTarget.style.transform = "scale(1)")}
+/>
                     </div>
                   </div>
                   <div style={{ padding: 20 }}>
