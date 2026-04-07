@@ -828,7 +828,7 @@ export default function HomePage() {
                 gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
               }}
             >
-              {gallery.map((item, index) => (
+              {gallery.map((item) => (
                 <SectionCard key={item.title} style={{ overflow: "hidden", borderColor: "rgba(125,211,252,0.15)" }}>
                   <div
                     style={{
