@@ -282,7 +282,7 @@ export default function HomePage() {
                   <div style={{ borderRadius: 18, border: "1px dashed rgba(125,211,252,0.25)", background: colors.panelSoft, padding: 24, textAlign: "center" }}>
                     <ImageIcon size={40} color={colors.sky} />
                     <div style={{ marginTop: 12, fontWeight: 700 }}>AI concept preview appears here</div>
-                    <<div style={{ marginTop: 4, color: colors.softText, fontSize: 12 }}>Your tattoo preview will appear here.</div>
+                    <div style={{ marginTop: 4, color: colors.softText, fontSize: 12 }}>Your tattoo preview will appear here.</div>
                   </div>
                 </div>
               </div>
