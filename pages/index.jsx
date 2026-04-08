@@ -241,7 +241,7 @@ export default function HomePage() {
               <div>
                 <Badge palette="sky">Try Your Tattoo Idea</Badge>
                 <div style={{ marginTop: 12 }}>
-                  <h2 <h2 style={{ margin: 0, fontSize: 30, fontWeight: 800, color: colors.sky }}>Preview your tattoo idea before booking</h2>
+                  <h2 style={{ margin: 0, fontSize: 30, fontWeight: 800, color: colors.sky }}>Preview your tattoo idea before booking</h2>
                   <p style={{ color: colors.softText, lineHeight: 1.75, maxWidth: 720 }}>Describe your idea and get a preview of your tattoo before booking your appointment.</p>
                 </div>
                 <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
