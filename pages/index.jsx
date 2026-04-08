@@ -239,7 +239,7 @@ export default function HomePage() {
           <SectionCard style={{ gridColumn: "1 / -1", borderColor: "rgba(163,230,53,0.2)" }}>
             <div style={{ display: "grid", gap: 24, padding: 28, gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", alignItems: "center" }}>
               <div>
-                <Badge palette="sky">AI Tattoo Generator</Badge>
+                <Badge palette="sky">Try Your Tattoo Idea</Badge>
                 <div style={{ marginTop: 12 }}>
                   <h2 style={{ margin: 0, fontSize: 30, fontWeight: 800, color: colors.sky }}>Let customers generate tattoo ideas before booking</h2>
                   <p style={{ color: colors.softText, lineHeight: 1.75, maxWidth: 720 }}>Customers can type their concept, choose style, body placement, size, and mood, then get an AI-generated tattoo idea preview for consultation at Dx Tattoo Hunting Baroda.</p>
