@@ -242,7 +242,7 @@ export default function HomePage() {
                 <Badge palette="sky">Try Your Tattoo Idea</Badge>
                 <div style={{ marginTop: 12 }}>
                   <h2 style={{ margin: 0, fontSize: 30, fontWeight: 800, color: colors.sky }}>Let customers generate tattoo ideas before booking</h2>
-                  <p style={{ color: colors.softText, lineHeight: 1.75, maxWidth: 720 }}>Customers can type their concept, choose style, body placement, size, and mood, then get an AI-generated tattoo idea preview for consultation at Dx Tattoo Hunting Baroda.</p>
+                  <p style={{ color: colors.softText, lineHeight: 1.75, maxWidth: 720 }}>Describe your idea and get a preview of your tattoo before booking your appointment.</p>
                 </div>
                 <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
                   <div style={{ borderRadius: 18, border: `1px solid ${colors.border}`, background: colors.panelDark, padding: 16 }}>
