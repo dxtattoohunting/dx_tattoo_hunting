@@ -241,12 +241,12 @@ export default function HomePage() {
               <div>
                 <Badge palette="sky">Try Your Tattoo Idea</Badge>
                 <div style={{ marginTop: 12 }}>
-                  <h2 style={{ margin: 0, fontSize: 30, fontWeight: 800, color: colors.sky }}>Let customers generate tattoo ideas before booking</h2>
+                  <h2 <h2 style={{ margin: 0, fontSize: 30, fontWeight: 800, color: colors.sky }}>Preview your tattoo idea before booking</h2>
                   <p style={{ color: colors.softText, lineHeight: 1.75, maxWidth: 720 }}>Describe your idea and get a preview of your tattoo before booking your appointment.</p>
                 </div>
                 <div style={{ display: "grid", gap: 12, gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
                   <div style={{ borderRadius: 18, border: `1px solid ${colors.border}`, background: colors.panelDark, padding: 16 }}>
-                    <div style={{ fontWeight: 700 }}>Input options</div>
+                    <div style={{ fontWeight: 700 }}>Tell us your idea</div>
                     <div style={{ marginTop: 6, color: colors.softText, fontSize: 14 }}>Name, deity, animal, script, portrait, symbolism, placement, and style.</div>
                   </div>
                   <div style={{ borderRadius: 18, border: `1px solid ${colors.border}`, background: colors.panelDark, padding: 16 }}>
@@ -282,7 +282,7 @@ export default function HomePage() {
                   <div style={{ borderRadius: 18, border: "1px dashed rgba(125,211,252,0.25)", background: colors.panelSoft, padding: 24, textAlign: "center" }}>
                     <ImageIcon size={40} color={colors.sky} />
                     <div style={{ marginTop: 12, fontWeight: 700 }}>AI concept preview appears here</div>
-                    <div style={{ marginTop: 4, color: colors.softText, fontSize: 12 }}>This can later connect to a real image generation API.</div>
+                    <<div style={{ marginTop: 4, color: colors.softText, fontSize: 12 }}>Your tattoo preview will appear here.</div>
                   </div>
                 </div>
               </div>
