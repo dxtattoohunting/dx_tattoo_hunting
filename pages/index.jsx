@@ -1,10 +1,6 @@
 import React, { useMemo, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  Phone, MapPin, Image as ImageIcon, Star, IndianRupee, Sparkles,
-  HeartHandshake, ShieldCheck, Instagram, Smartphone, Monitor, Wand2,
-  X, ChevronLeft, ChevronRight, MapPinned
-} from "lucide-react";
+import { Phone, MapPin, Image as ImageIcon, Star, IndianRupee, Sparkles, HeartHandshake, ShieldCheck, Instagram, Smartphone, Monitor, Wand2, X, ChevronLeft, ChevronRight, MapPinned } from "lucide-react";
 
 const tattooStyles = [
   { name: "Hyper Realistic", price: "₹500/sq.in+", desc: "High-detail black and grey realism with depth, textures, and lifelike finishing." },
@@ -25,6 +21,7 @@ const gallery = Array.from({ length: 19 }, (_, i) => ({
 }));
 
 const slots = ["11:00 AM", "12:30 PM", "2:00 PM", "4:00 PM", "6:00 PM", "7:30 PM"];
+const WHATSAPP = "918200568801";
 
 const colors = {
   panel: "rgba(24,24,27,0.86)",
@@ -41,17 +38,17 @@ const colors = {
 
 const ui = {
   page: { minHeight: "100vh", color: colors.text, background: "linear-gradient(135deg, #000 0%, #09090b 45%, #111827 100%)", fontFamily: "Inter, Arial, sans-serif" },
-  container: { width: "100%", maxWidth: 1280, margin: "0 auto", padding: "0 16px" },
+  container: { width: "100%", maxWidth: 1280, margin: "0 auto", padding: "0 16px", boxSizing: "border-box" },
   sectionCard: { borderRadius: 28, border: `1px solid ${colors.border}`, background: colors.panel, boxShadow: "0 10px 30px rgba(0,0,0,0.24)" },
-  input: { width: "100%", borderRadius: 16, border: `1px solid ${colors.border}`, background: colors.panelDark, color: colors.text, padding: "14px 16px", outline: "none", fontSize: 15 },
-  textarea: { width: "100%", minHeight: 110, borderRadius: 16, border: `1px solid ${colors.border}`, background: colors.panelDark, color: colors.text, padding: "14px 16px", outline: "none", resize: "vertical", fontSize: 15 },
+  input: { width: "100%", borderRadius: 16, border: `1px solid ${colors.border}`, background: colors.panelDark, color: colors.text, padding: "14px 16px", outline: "none", fontSize: 15, boxSizing: "border-box" },
+  textarea: { width: "100%", minHeight: 110, borderRadius: 16, border: `1px solid ${colors.border}`, background: colors.panelDark, color: colors.text, padding: "14px 16px", outline: "none", resize: "vertical", fontSize: 15, boxSizing: "border-box" },
 };
 
 function SectionCard({ children, style = {} }) {
   return <div style={{ ...ui.sectionCard, ...style }}>{children}</div>;
 }
 function PrimaryButton({ children, style = {}, ...props }) {
-  return <button {...props} style={{ borderRadius: 18, background: colors.lime, color: "#000", border: "none", padding: "14px 24px", fontWeight: 700, cursor: "pointer", transition: "transform 0.2s ease, box-shadow 0.2s ease", ...style }}>{children}</button>;
+  return <button {...props} style={{ borderRadius: 18, background: colors.lime, color: "#000", border: "none", padding: "14px 24px", fontWeight: 700, cursor: "pointer", ...style }}>{children}</button>;
 }
 function OutlineButton({ children, color = "sky", style = {}, ...props }) {
   const borderColor = color === "lime" ? "rgba(163,230,53,0.35)" : "rgba(125,211,252,0.35)";
@@ -87,20 +84,25 @@ export default function HomePage() {
   const prevImage = () => setLightboxIndex((prev) => (prev === 0 ? gallery.length - 1 : prev - 1));
   const nextImage = () => setLightboxIndex((prev) => (prev === gallery.length - 1 ? 0 : prev + 1));
 
-  const quickBookingLink = `https://wa.me/918200568801?text=Hello%20I%20want%20to%20book%20a%20${encodeURIComponent(selectedStyle)}%20tattoo.%20Preferred%20slot:%20${encodeURIComponent(selectedSlot)}`;
-  const bookingLink = `https://wa.me/918200568801?text=Hello%20I%20want%20to%20book%20a%20tattoo.%0AName:%20${encodeURIComponent(form.name || "")}%0APhone:%20${encodeURIComponent(form.phone || "")}%0APlacement:%20${encodeURIComponent(form.placement || "")}%0ABudget:%20${encodeURIComponent(form.budget || "")}%0AIdea:%20${encodeURIComponent(form.idea || "")}%0APreferred%20Slot:%20${encodeURIComponent(selectedSlot)}`;
+  const quickBookingLink = `https://wa.me/${WHATSAPP}?text=Hello%20I%20want%20to%20book%20a%20${encodeURIComponent(selectedStyle)}%20tattoo.%20Preferred%20slot:%20${encodeURIComponent(selectedSlot)}`;
+  const bookingLink = `https://wa.me/${WHATSAPP}?text=Hello%20I%20want%20to%20book%20a%20tattoo.%0AName:%20${encodeURIComponent(form.name || "")}%0APhone:%20${encodeURIComponent(form.phone || "")}%0APlacement:%20${encodeURIComponent(form.placement || "")}%0ABudget:%20${encodeURIComponent(form.budget || "")}%0AIdea:%20${encodeURIComponent(form.idea || "")}%0APreferred%20Slot:%20${encodeURIComponent(selectedSlot)}`;
 
   const handleGeneratePreview = () => {
+    const style = generator.style || selectedStyle;
+    setSelectedStyle(style);
     setGeneratorResult({
       title: generator.prompt || "Custom Tattoo Idea",
       placement: generator.placement || "Placement not selected",
       size: generator.size || "Size not selected",
-      style: generator.style || selectedStyle,
+      style,
       tone: generator.tone || "Black & Grey",
       details: generator.details || "No extra details added yet.",
     });
-    if (generator.style) setSelectedStyle(generator.style);
   };
+
+  const aiWhatsappLink = generatorResult
+    ? `https://wa.me/${WHATSAPP}?text=Hello%20I%20want%20this%20tattoo%20idea.%0AConcept:%20${encodeURIComponent(generatorResult.title)}%0APlacement:%20${encodeURIComponent(generatorResult.placement)}%0ASize:%20${encodeURIComponent(generatorResult.size)}%0AStyle:%20${encodeURIComponent(generatorResult.style)}%0ATone:%20${encodeURIComponent(generatorResult.tone)}%0ADetails:%20${encodeURIComponent(generatorResult.details)}`
+    : "#";
 
   const tabButton = (key, label, palette) => {
     const active = activeTab === key;
@@ -111,7 +113,9 @@ export default function HomePage() {
   return (
     <div style={ui.page}>
       <style>{`
-        .hero-grid,.ai-grid,.location-grid,.booking-grid,.gallery-grid,.services-grid,.contact-grid,.showcase-grid,.metric-grid,.tab-grid,.two-col-grid{display:grid;gap:24px}
+        *{box-sizing:border-box}
+        body{margin:0;overflow-x:hidden}
+        .hero-grid,.ai-grid,.location-grid,.booking-grid,.gallery-grid,.services-grid,.contact-grid,.showcase-grid,.metric-grid,.tab-grid,.two-col-grid{display:grid;gap:24px;min-width:0}
         .hero-grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr));align-items:center}
         .ai-grid,.showcase-grid{grid-template-columns:repeat(auto-fit,minmax(320px,1fr))}
         .location-grid{grid-template-columns:minmax(280px,1.05fr) minmax(240px,0.95fr)}
@@ -151,7 +155,7 @@ export default function HomePage() {
                 <p style={{ color: colors.softText, lineHeight: 1.75, maxWidth: 620 }}>Permanent tattoos in Baroda with strong custom artwork, realistic detailing, script tattoos, color tattoos, and premium body-placement concepts.</p>
               </div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 12, marginTop: 18 }}>
-                <a href="https://wa.me/918200568801?text=Hello%20I%20want%20to%20book%20a%20tattoo" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}><PrimaryButton>Book on WhatsApp</PrimaryButton></a>
+                <a href={`https://wa.me/${WHATSAPP}?text=Hello%20I%20want%20to%20book%20a%20tattoo`} target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}><PrimaryButton>Book on WhatsApp</PrimaryButton></a>
                 <OutlineButton onClick={() => { const section = document.getElementById("gallery-section"); if (section) section.scrollIntoView({ behavior: "smooth", block: "start" }); }}>See Tattoo Work</OutlineButton>
                 <a href="https://instagram.com/dx_tattoo_hunting" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}><OutlineButton color="lime"><span style={{ display: "inline-flex", alignItems: "center" }}><Instagram size={16} style={{ marginRight: 8 }} /> @dx_tattoo_hunting</span></OutlineButton></a>
               </div>
@@ -192,6 +196,302 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <main style={{ ...ui.container, paddingTop: 40, paddingBottom: 56 }}>
+        <section className="showcase-grid" style={{ marginBottom: 40 }}>
+          <SectionCard style={{ borderColor: "rgba(163,230,53,0.2)" }}>
+            <div className="ai-grid mobile-section-padding" style={{ padding: 28, alignItems: "center" }}>
+              <div>
+                <Badge palette="sky">Try Your Tattoo Idea</Badge>
+                <div style={{ marginTop: 12 }}>
+                  <h2 className="mobile-card-title" style={{ margin: 0, fontSize: 30, fontWeight: 800, color: colors.sky }}>Preview your tattoo idea before booking</h2>
+                  <p style={{ color: colors.softText, lineHeight: 1.75, maxWidth: 720 }}>Describe your idea and get a preview of your tattoo before booking your appointment.</p>
+                </div>
+                <div className="two-col-grid">
+                  <div style={{ borderRadius: 18, border: `1px solid ${colors.border}`, background: colors.panelDark, padding: 16 }}>
+                    <div style={{ fontWeight: 700 }}>Tell us your idea</div>
+                    <div style={{ marginTop: 6, color: colors.softText, fontSize: 14 }}>Add concept, placement, size, style and extra details.</div>
+                  </div>
+                  <div style={{ borderRadius: 18, border: `1px solid ${colors.border}`, background: colors.panelDark, padding: 16 }}>
+                    <div style={{ fontWeight: 700 }}>Tattoo Preview Benefit</div>
+                    <div style={{ marginTop: 6, color: colors.softText, fontSize: 14 }}>Get a clear preview of your tattoo idea before visiting the studio.</div>
+                  </div>
+                </div>
+              </div>
+
+              <div style={{ borderRadius: 32, border: "1px solid rgba(125,211,252,0.2)", background: "rgba(0,0,0,0.35)", padding: 16, boxShadow: "0 18px 42px rgba(125,211,252,0.08)" }}>
+                <div style={{ borderRadius: 24, border: `1px solid ${colors.border}`, background: "#09090b", padding: 16, display: "grid", gap: 14 }}>
+                  <div>
+                    <div style={{ color: "#bae6fd", fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase" }}>AI Design Preview</div>
+                    <h3 className="mobile-card-title" style={{ margin: "8px 0 0", fontSize: 22, fontWeight: 700, color: colors.sky }}>Generate your tattoo concept</h3>
+                  </div>
+                  <div style={{ display: "grid", gap: 12 }}>
+                    <input style={ui.input} value={generator.prompt} onChange={(e) => updateGenerator("prompt", e.target.value)} placeholder="Example: Lord Shiva trishul with smoke and Sanskrit script" />
+                    <div className="two-col-grid">
+                      <input style={ui.input} value={generator.placement} onChange={(e) => updateGenerator("placement", e.target.value)} placeholder="Placement" />
+                      <input style={ui.input} value={generator.size} onChange={(e) => updateGenerator("size", e.target.value)} placeholder="Size" />
+                    </div>
+                    <div className="two-col-grid">
+                      <input style={ui.input} value={generator.style} onChange={(e) => updateGenerator("style", e.target.value)} placeholder="Style" />
+                      <input style={ui.input} value={generator.tone} onChange={(e) => updateGenerator("tone", e.target.value)} placeholder="Black & Grey / Color" />
+                    </div>
+                    <textarea style={ui.textarea} value={generator.details} onChange={(e) => updateGenerator("details", e.target.value)} placeholder="Describe mood, meaning, or extra elements" />
+                    <PrimaryButton style={{ width: "100%" }} onClick={handleGeneratePreview}><span style={{ display: "inline-flex", alignItems: "center" }}><Wand2 size={16} style={{ marginRight: 8 }} /> Generate Tattoo Idea</span></PrimaryButton>
+                  </div>
+                  <div style={{ borderRadius: 18, border: "1px dashed rgba(125,211,252,0.25)", background: colors.panelSoft, padding: 24, textAlign: "left" }}>
+                    {!generatorResult ? (
+                      <>
+                        <div style={{ display: "flex", alignItems: "center", gap: 10 }}><ImageIcon size={28} color={colors.sky} /><div style={{ fontWeight: 700 }}>AI concept preview appears here</div></div>
+                        <div style={{ marginTop: 8, color: colors.softText, fontSize: 12 }}>Your tattoo preview will appear here.</div>
+                      </>
+                    ) : (
+                      <>
+                        <div style={{ fontWeight: 800, color: colors.sky, fontSize: 18 }}>{generatorResult.title}</div>
+                        <div style={{ marginTop: 10, color: colors.softText, lineHeight: 1.7, fontSize: 14 }}>
+                          <div><strong>Placement:</strong> {generatorResult.placement}</div>
+                          <div><strong>Size:</strong> {generatorResult.size}</div>
+                          <div><strong>Style:</strong> {generatorResult.style}</div>
+                          <div><strong>Tone:</strong> {generatorResult.tone}</div>
+                          <div style={{ marginTop: 8 }}><strong>Extra details:</strong> {generatorResult.details}</div>
+                        </div>
+                        <a href={aiWhatsappLink} target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}><PrimaryButton style={{ marginTop: 14, width: "100%" }}>Send This Idea on WhatsApp</PrimaryButton></a>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </SectionCard>
+
+          <div className="showcase-grid">
+            <SectionCard>
+              <div className="mobile-section-padding" style={{ padding: 24 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+                  <Smartphone size={24} color={colors.lime} />
+                  <div>
+                    <h2 className="mobile-card-title" style={{ margin: 0, fontSize: 22, fontWeight: 700, color: colors.orange }}>Android App Version</h2>
+                    <div style={{ color: colors.softText, fontSize: 14 }}>Mobile-first booking, gallery browsing, call button, and WhatsApp enquiry flow.</div>
+                  </div>
+                </div>
+                <div style={{ maxWidth: 320, margin: "0 auto", borderRadius: 40, border: `1px solid ${colors.border}`, background: "#000", padding: 12, boxShadow: "0 22px 48px rgba(0,0,0,0.35)" }}>
+                  <div style={{ overflow: "hidden", borderRadius: 30, border: `1px solid ${colors.border}`, background: "#09090b" }}>
+                    <div style={{ borderBottom: `1px solid ${colors.border}`, padding: 16 }}>
+                      <div style={{ color: "#bef264", fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase" }}>Dx Tattoo Hunting</div>
+                      <h3 className="mobile-card-title" style={{ margin: "8px 0 0", fontSize: 22, fontWeight: 700, color: colors.sky }}>Book your next tattoo</h3>
+                    </div>
+                    <div style={{ display: "grid", gap: 12, padding: 16 }}>
+                      {[["Black Ink", "₹500/sq.in"], ["Color Tattoos", "₹700/sq.in"], ["Realistic Tattoos", "Custom quote by design"]].map(([label, value]) => (
+                        <div key={label} style={{ borderRadius: 18, background: colors.panelSoft, padding: 14 }}>
+                          <div style={{ fontWeight: 700 }}>{label}</div>
+                          <div style={{ color: colors.softText, fontSize: 12, marginTop: 4 }}>{value}</div>
+                        </div>
+                      ))}
+                      <a href={`https://wa.me/${WHATSAPP}?text=Hello%20I%20want%20to%20book%20a%20tattoo`} target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}><PrimaryButton style={{ width: "100%" }}>WhatsApp Booking</PrimaryButton></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </SectionCard>
+
+            <SectionCard>
+              <div className="mobile-section-padding" style={{ padding: 24 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+                  <Monitor size={24} color={colors.sky} />
+                  <div>
+                    <h2 className="mobile-card-title" style={{ margin: 0, fontSize: 22, fontWeight: 700, color: colors.orange }}>Web Version</h2>
+                    <div style={{ color: colors.softText, fontSize: 14 }}>Desktop-friendly portfolio, premium landing page, and enquiry-focused layout.</div>
+                  </div>
+                </div>
+                <div style={{ borderRadius: 32, border: `1px solid ${colors.border}`, background: "#09090b", padding: 16, boxShadow: "0 22px 48px rgba(0,0,0,0.35)" }}>
+                  <div style={{ marginBottom: 16, display: "flex", justifyContent: "space-between", alignItems: "center", borderRadius: 18, border: `1px solid ${colors.border}`, background: colors.panelSoft, padding: "14px 16px" }}>
+                    <div><div style={{ color: "#bae6fd", fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase" }}>Dx Tattoo Hunting Baroda</div><div style={{ marginTop: 4, fontSize: 20, fontWeight: 700 }}>Premium Tattoo Studio Website</div></div>
+                    <a href="https://instagram.com/dx_tattoo_hunting" target="_blank" rel="noreferrer" style={{ color: "inherit" }}><Instagram size={20} color={colors.sky} /></a>
+                  </div>
+                  <div className="services-grid" style={{ gap: 12 }}>
+                    {[["Portfolio", "Real tattoo showcase"], ["Pricing", "Black, color, realism"], ["Contact", "Call, WhatsApp, Instagram"]].map(([label, value]) => (
+                      <div key={label} style={{ borderRadius: 18, background: colors.panelSoft, padding: 16 }}>
+                        <div style={{ fontWeight: 700 }}>{label}</div>
+                        <div style={{ color: colors.softText, fontSize: 12, marginTop: 4 }}>{value}</div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </SectionCard>
+          </div>
+        </section>
+
+        <SectionCard style={{ marginBottom: 32, borderColor: "rgba(125,211,252,0.15)" }}>
+          <div className="mobile-section-padding" style={{ padding: 24 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 16 }}>
+              <MapPinned size={24} color={colors.sky} />
+              <div>
+                <h2 className="mobile-card-title" style={{ margin: 0, fontSize: 22, fontWeight: 700, color: colors.orange }}>Studio Location</h2>
+                <div style={{ color: colors.softText, fontSize: 14 }}>Find the studio easily and get in touch quickly.</div>
+              </div>
+            </div>
+            <div className="location-grid">
+              <div style={{ borderRadius: 22, overflow: "hidden", border: `1px solid ${colors.border}`, minHeight: 320 }}>
+                <iframe title="Dx Tattoo Hunting Location" src="https://www.google.com/maps?q=SF-27%2C%20Kasper%20Square%2C%20Gotri-Laxmipura%20Road%2C%20New%20Alkapuri%2C%20Vadodara%2C%20Gujarat%20390021&output=embed" width="100%" height="320" style={{ border: 0, display: "block" }} loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
+              </div>
+              <div style={{ display: "grid", gap: 14 }}>
+                <div style={{ borderRadius: 18, background: colors.panelDark, border: `1px solid ${colors.border}`, padding: 16 }}>
+                  <div style={{ fontWeight: 700, marginBottom: 6 }}>Studio Address</div>
+                  <div style={{ color: colors.softText, lineHeight: 1.7 }}>SF-27, Kasper Square, Gotri-Laxmipura Road, New Alkapuri, Vadodara, Gujarat 390021</div>
+                </div>
+                <div style={{ borderRadius: 18, background: colors.panelDark, border: `1px solid ${colors.border}`, padding: 16 }}>
+                  <div style={{ display: "flex", gap: 12 }}>
+                    <ShieldCheck size={20} color={colors.lime} />
+                    <div><div style={{ fontWeight: 700 }}>Professional Setup</div><div style={{ color: colors.softText, marginTop: 4, fontSize: 14 }}>Tattoo service with a premium studio environment and guided consultation.</div></div>
+                  </div>
+                </div>
+                <div style={{ borderRadius: 18, background: colors.panelDark, border: `1px solid ${colors.border}`, padding: 16 }}>
+                  <div style={{ display: "flex", gap: 12 }}>
+                    <HeartHandshake size={20} color={colors.sky} />
+                    <div><div style={{ fontWeight: 700 }}>Consultation Support</div><div style={{ color: colors.softText, marginTop: 4, fontSize: 14 }}>Discuss concept, placement and booking details before you visit.</div></div>
+                  </div>
+                </div>
+                <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                  <a href="https://www.google.com/maps?q=SF-27%2C%20Kasper%20Square%2C%20Gotri-Laxmipura%20Road%2C%20New%20Alkapuri%2C%20Vadodara%2C%20Gujarat%20390021" target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}><PrimaryButton>Open in Maps</PrimaryButton></a>
+                  <a href={`https://wa.me/${WHATSAPP}?text=Hello%20I%20want%20studio%20location%20details`} target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}><OutlineButton>Ask on WhatsApp</OutlineButton></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </SectionCard>
+
+        <div style={{ display: "grid", gap: 32 }}>
+          <div className="tab-grid" style={{ background: "rgba(24,24,27,0.9)", border: "1px solid rgba(163,230,53,0.12)", borderRadius: 20, padding: 6 }}>
+            {tabButton("services", "Services", "lime")}
+            {tabButton("gallery", "Gallery", "sky")}
+            {tabButton("booking", "Booking", "lime")}
+            {tabButton("contact", "Contact", "sky")}
+          </div>
+
+          {activeTab === "services" && (
+            <div className="services-grid">
+              {tattooStyles.map((item) => (
+                <SectionCard key={item.name} style={{ height: "100%", background: "rgba(24,24,27,0.75)", borderColor: "rgba(163,230,53,0.15)" }}>
+                  <div className="mobile-section-padding" style={{ padding: 24 }}>
+                    <div style={{ display: "flex", gap: 12, justifyContent: "space-between", alignItems: "flex-start" }}>
+                      <div>
+                        <h3 className="mobile-card-title" style={{ margin: 0, fontSize: 22, fontWeight: 700, color: colors.orange }}>{item.name}</h3>
+                        <p style={{ marginTop: 8, color: colors.softText, lineHeight: 1.7 }}>{item.desc}</p>
+                      </div>
+                      <span style={{ borderRadius: 999, background: colors.lime, color: "#000", padding: "6px 12px", fontWeight: 700, fontSize: 13 }}>{item.price}</span>
+                    </div>
+                    <div style={{ marginTop: 16 }}>
+                      <OutlineButton style={{ width: "100%" }} onClick={() => { setSelectedStyle(item.name); setGenerator((prev) => ({ ...prev, style: item.name })); setActiveTab("booking"); }}>Explore Design</OutlineButton>
+                    </div>
+                  </div>
+                </SectionCard>
+              ))}
+            </div>
+          )}
+
+          {activeTab === "gallery" && (
+            <div id="gallery-section" className="gallery-grid">
+              {gallery.map((item, index) => (
+                <SectionCard key={item.title + item.image} style={{ overflow: "hidden", borderColor: "rgba(125,211,252,0.15)" }}>
+                  <div onClick={() => openLightbox(index)} style={{ height: 220, overflow: "hidden", borderBottom: `1px solid ${colors.border}`, background: "#27272a", cursor: "pointer" }}>
+                    <img src={item.image} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
+                  </div>
+                  <div className="mobile-tight-padding" style={{ padding: 20 }}>
+                    <div style={{ display: "flex", gap: 12, justifyContent: "space-between", alignItems: "center" }}>
+                      <h3 style={{ margin: 0, fontWeight: 700 }}>{item.title}</h3>
+                      <span style={{ borderRadius: 999, background: "rgba(255,255,255,0.10)", color: "#fff", padding: "6px 10px", fontSize: 12 }}>{item.type}</span>
+                    </div>
+                    <p style={{ marginTop: 10, color: colors.softText, lineHeight: 1.7, fontSize: 14 }}>{item.note}</p>
+                  </div>
+                </SectionCard>
+              ))}
+            </div>
+          )}
+
+          {activeTab === "booking" && (
+            <div className="booking-grid">
+              <SectionCard style={{ borderColor: "rgba(125,211,252,0.15)" }}>
+                <div className="mobile-section-padding" style={{ borderBottom: `1px solid ${colors.border}`, padding: 24 }}><h2 className="mobile-card-title" style={{ margin: 0, fontSize: 24, fontWeight: 700 }}>Book a Tattoo Consultation</h2></div>
+                <div className="mobile-section-padding" style={{ padding: 24 }}>
+                  <div style={{ display: "grid", gap: 16 }}>
+                    <div className="two-col-grid">
+                      <input style={ui.input} value={form.name} onChange={(e) => updateField("name", e.target.value)} placeholder="Your name" />
+                      <input style={ui.input} value={form.phone} onChange={(e) => updateField("phone", e.target.value)} placeholder="Phone number" />
+                    </div>
+                    <div className="two-col-grid">
+                      <input style={ui.input} value={form.placement} onChange={(e) => updateField("placement", e.target.value)} placeholder="Body placement" />
+                      <input style={ui.input} value={form.budget} onChange={(e) => updateField("budget", e.target.value)} placeholder="Expected budget" />
+                    </div>
+                    <textarea style={{ ...ui.textarea, minHeight: 130 }} value={form.idea} onChange={(e) => updateField("idea", e.target.value)} placeholder="Describe your tattoo idea" />
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>{slots.map((slot)=><PillButton key={slot} active={selectedSlot===slot} palette="sky" onClick={()=>setSelectedSlot(slot)}>{slot}</PillButton>)}</div>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", gap: 12, flexWrap: "wrap" }}>
+                      <div style={{ color: colors.softText, fontSize: 14 }}>Selected time: {selectedSlot}</div>
+                      <a href={bookingLink} target="_blank" rel="noreferrer" style={{ textDecoration: "none", width: "100%", maxWidth: 260 }}><PrimaryButton type="button" style={{ width: "100%" }}>Send Booking Request</PrimaryButton></a>
+                    </div>
+                  </div>
+                </div>
+              </SectionCard>
+
+              <div style={{ display: "grid", gap: 24 }}>
+                <SectionCard style={{ borderColor: "rgba(125,211,252,0.15)" }}>
+                  <div className="mobile-section-padding" style={{ padding: 24 }}>
+                    <h3 className="mobile-card-title" style={{ margin: 0, fontSize: 20, fontWeight: 700 }}>Why clients choose Dx Tattoo Hunting</h3>
+                    <div style={{ display: "grid", gap: 16, marginTop: 18 }}>
+                      {[
+                        [ShieldCheck, colors.lime, "Hygiene First", "Professional permanent tattoo process with hygiene-focused studio practice."],
+                        [HeartHandshake, colors.sky, "Custom Guidance", "Guidance for design selection, placement planning, and tattoo flow on the body."],
+                        [Star, colors.lime, "Portfolio Driven", "Real portfolio-based confidence with custom work across multiple tattoo styles."],
+                      ].map(([Icon, color, title, desc]) => (
+                        <div key={title} style={{ display: "flex", gap: 12 }}>
+                          <Icon size={20} color={color} style={{ marginTop: 2 }} />
+                          <div><div style={{ fontWeight: 700 }}>{title}</div><div style={{ color: colors.softText, fontSize: 14, marginTop: 4 }}>{desc}</div></div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </SectionCard>
+
+                <SectionCard style={{ borderColor: "rgba(125,211,252,0.15)" }}>
+                  <div className="mobile-section-padding" style={{ padding: 24 }}>
+                    <h3 className="mobile-card-title" style={{ margin: 0, fontSize: 20, fontWeight: 700 }}>Pricing Highlights</h3>
+                    <div style={{ display: "grid", gap: 12, marginTop: 16 }}>
+                      {[
+                        [IndianRupee, colors.lime, "Black Ink Tattoos", "₹500/sq.in"],
+                        [Sparkles, colors.sky, "Color Tattoos", "₹700/sq.in"],
+                        [Star, colors.lime, "Realistic Tattoos", "Custom"],
+                      ].map(([Icon, color, label, value]) => (
+                        <div key={label} style={{ display: "flex", justifyContent: "space-between", alignItems: "center", borderRadius: 18, border: `1px solid ${colors.border}`, background: colors.panelDark, padding: 14 }}>
+                          <span style={{ display: "inline-flex", alignItems: "center", gap: 8, color: "#fff", fontSize: 14 }}><Icon size={16} color={color} /> {label}</span>
+                          <span style={{ borderRadius: 999, background: "rgba(255,255,255,0.10)", color: "#fff", padding: "6px 10px", fontSize: 12 }}>{value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </SectionCard>
+              </div>
+            </div>
+          )}
+
+          {activeTab === "contact" && (
+            <div className="contact-grid">
+              {[
+                [Phone, colors.lime, "Phone / WhatsApp", "+91 8200568801", "WhatsApp available"],
+                [MapPin, colors.sky, "Studio Location", "SF-27, Kasper Square, Gotri-Laxmipura Road, New Alkapuri, Vadodara, Gujarat 390021", ""],
+                [Instagram, colors.lime, "Instagram", "@dx_tattoo_hunting", ""],
+              ].map(([Icon, color, title, line1, line2]) => (
+                <SectionCard key={title} style={{ borderColor: "rgba(125,211,252,0.15)" }}>
+                  <div className="mobile-section-padding" style={{ padding: 24 }}>
+                    <Icon size={24} color={color} />
+                    <h3 className="mobile-card-title" style={{ margin: "12px 0 0", fontSize: 20, fontWeight: 700 }}>{title}</h3>
+                    <p style={{ marginTop: 8, color: colors.softText, lineHeight: 1.7 }}>{line1}</p>
+                    {line2 ? <p style={{ marginTop: 4, color: colors.mutedText, fontSize: 14 }}>{line2}</p> : null}
+                  </div>
+                </SectionCard>
+              ))}
+            </div>
+          )}
+        </div>
+      </main>
     </div>
   );
 }
