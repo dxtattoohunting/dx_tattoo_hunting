@@ -168,7 +168,7 @@ export default function HomePage() {
         <div style={ui.container}>
           <div style={{ position: "relative", display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", gap: 32, alignItems: "center" }}>
             <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-              <Badge>Tattoo Studio • Baroda • Dark Luxury x Neon Modern</Badge>
+              <Badge>Tattoo Studio • Baroda • Custom Premium Tattoos</Badge>
               <div style={{ marginTop: 14 }}>
                 <h1 style={{ margin: 0, fontSize: "clamp(36px, 7vw, 64px)", lineHeight: 1.05, fontWeight: 800 }}>Dx Tattoo Hunting Baroda</h1>
                 <p style={{ margin: "10px 0 0", fontStyle: "italic", color: "#bef264", fontSize: 18 }}>Make your look more attractive...</p>
@@ -250,8 +250,8 @@ export default function HomePage() {
                     <div style={{ marginTop: 6, color: colors.softText, fontSize: 14 }}>Name, deity, animal, script, portrait, symbolism, placement, and style.</div>
                   </div>
                   <div style={{ borderRadius: 18, border: `1px solid ${colors.border}`, background: colors.panelDark, padding: 16 }}>
-                    <div style={{ fontWeight: 700 }}>Studio advantage</div>
-                    <div style={{ marginTop: 6, color: colors.softText, fontSize: 14 }}>Pre-qualified leads with clear design direction before the client visits.</div>
+                    <div style={{ fontWeight: 700 }}>Tattoo Preview Benefit</div>
+                    <div style={{ marginTop: 6, color: colors.softText, fontSize: 14 }}>Get a clear preview of your tattoo idea before visiting the studio.</div>
                   </div>
                 </div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
